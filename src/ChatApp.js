@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './auth/AuthContext';
 import { AppRouter } from './router/AppRouter';
 
 export const ChatApp = () => {
