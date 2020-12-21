@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthContext';
+import Swal from 'sweetalert2';
 
 export const LoginPage = () => {
 
@@ -16,11 +17,11 @@ export const LoginPage = () => {
         const email = localStorage.getItem('email');
         
         if (email) {
-            setForm({
+            setForm( (form) => ({
                 ...form,
                 email,
                 rememberme: true,
-            })
+            }));
         }
     }, [form.rememberme])
 
@@ -40,7 +41,7 @@ export const LoginPage = () => {
         });
     }
 
-    const onSubmit = (ev) => {
+    const onSubmit = async(ev) => {
         ev.preventDefault();
 
         (form.rememberme)
@@ -48,7 +49,11 @@ export const LoginPage = () => {
             : localStorage.removeItem('email', form.email);
 
         const { email, password } = form;
-        login(email, password);
+        const ok = await login(email, password);
+        
+        if (!ok) {
+            Swal.fire('Error', 'Verifique las credenciales', 'error');
+        }
     }
 
     return (
