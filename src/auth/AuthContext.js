@@ -32,6 +32,8 @@ export const AuthProvider = ({ children }) => {
                 name: usuario.nombre,
                 email: usuario.email
             });
+            
+            console.log('autenticado');
         }
         return resp.ok;
     }
