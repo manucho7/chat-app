@@ -54,7 +54,6 @@ export const AuthProvider = ({ children }) => {
                 email: usuario.email
             });
             
-            console.log('autenticado!!!!!');
             return true;
         }
         return resp.msg;
@@ -90,7 +89,6 @@ export const AuthProvider = ({ children }) => {
                 email: usuario.email
             });
 
-            console.log('autenticado con token !');
             return true;
 
         } else {
