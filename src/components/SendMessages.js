@@ -11,25 +11,25 @@ export const SendMessages = () => {
 
     const { chatState } = useContext(ChatContext);
 
-    const [ message, setMessage ] = useState('');
+    const [ mensaje, setMensaje ] = useState('');
 
     const onChange = ({ target }) => {
-        setMessage( target.value );
+        setMensaje( target.value );
     }
 
     const onSubmit = (ev) => {
         ev.preventDefault();
 
-        if ( message === 0 ){ return; }
+        if ( mensaje.length === 0 ){ return; }
 
-        setMessage('');
+        setMensaje('');
 
         //TODO: Emitir un evento de socket para enviar el message
         //Hacer el dispatch del message
         socket.emit('mensaje-personal', {
             de: auth.uid,
             para: chatState.chatActivo,
-            message
+            message: mensaje
         });
     }
 
@@ -42,7 +42,7 @@ export const SendMessages = () => {
                         type="text" 
                         className="write_msg" 
                         placeholder="Mensaje..."
-                        value={ message }
+                        value={ mensaje }
                         onChange={ onChange }
                     />
 
