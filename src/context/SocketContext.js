@@ -5,6 +5,7 @@ import { ChatContext } from './chat/ChatContext';
 import { useSocket } from '../hooks/useSocket'
 import { types } from '../types/types';
 
+
 export const SocketContext = createContext();
 
 
@@ -38,6 +39,12 @@ export const SocketProvider = ({ children }) => {
         })
         
     }, [socket, dispatch]);
+
+    useEffect(() => {
+        socket?.on('mensaje-personal', (mensaje) => {
+            console.log(mensaje);
+        });
+    }, [socket])
     
     return (
         <SocketContext.Provider value={{ socket, online }}>
