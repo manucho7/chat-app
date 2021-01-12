@@ -29,7 +29,7 @@ export const SendMessages = () => {
         socket.emit('mensaje-personal', {
             de: auth.uid,
             para: chatState.chatActivo,
-            message: mensaje
+            mensaje
         });
     }
 
