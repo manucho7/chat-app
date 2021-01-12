@@ -15,19 +15,19 @@ export const Messages = () => {
         <div className="mesgs">
             {/* <!-- Historia inicio --> */}
             <div className="msg_history">
-                    {
-                        chatState.mensajes.map( (msg) => (
-                            ( msg.para === auth.uid )
-                                ? <IncomingMessage key={msg._id} msg={msg} />
-                                : <OutgoingMessage key={msg._id} msg={msg} />
-                        ))
-                    }
+                {
+                    chatState.mensajes.map( (msg) => (
+                        ( msg.para === auth.uid )
+                            ? <IncomingMessage key={msg._id} msg={msg} />
+                            : <OutgoingMessage key={msg._id} msg={msg} />
+                    ))
+                }
 
-                    </div>
-                {/* <!-- Historia Fin --> */}
+            </div>
+            {/* <!-- Historia Fin --> */}
 
-                <SendMessages />
+            <SendMessages />
 
-                </div>
+        </div>
     )
 }
