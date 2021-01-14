@@ -4,10 +4,10 @@ import { AuthContext } from '../auth/AuthContext';
 import { ChatContext } from './chat/ChatContext';
 import { useSocket } from '../hooks/useSocket'
 import { types } from '../types/types';
+import { scrollToBottomAnimated } from '../helpers/scrollToBottom';
 
 
 export const SocketContext = createContext();
-
 
 export const SocketProvider = ({ children }) => {
 
@@ -40,12 +40,15 @@ export const SocketProvider = ({ children }) => {
         
     }, [socket, dispatch]);
 
+    //Recibiendo nuevo mensajes
     useEffect(() => {
         socket?.on('mensaje-personal', (mensaje) => {
             dispatch({
                 type: types.nuevoMensaje,
                 payload: mensaje
-            });           
+            });
+            
+            scrollToBottomAnimated('mensajes');
         });
     }, [socket, dispatch])
     
